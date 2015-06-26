@@ -1,0 +1,19 @@
+html
+  head(lang="en")
+    link(rel="stylesheet", href="app/css/style.css")
+    title Click app
+  body(ng-app="App")
+    h1 App
+    .container(ng-controller="MainCtrl")
+      .items(ng-click="createItem($event)")
+        .item(ng-click="clickItem($event, item)", ng-repeat="item in items", ng-style="{'left': item.left, 'top': item.top, 'background': item.color}", ng-class="'size-'+item.size")
+      .colors
+        = 'Select a color: '
+        select(ng-model="color")
+          option(value="#f00") Red
+          option(value="#0f0") Green
+          option(value="#00f") Blue
+    script(src="/socket.io/socket.io.js")
+    script(src="app/lib/angular.min.js")
+    script(src="app/lib/underscore-min.js")
+    script(src="app/app.js")
