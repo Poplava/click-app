@@ -4,42 +4,17 @@ var socket = io();
 
 app.controller('MainCtrl', MainCtrl);
 
-function MainCtrl1($scope) {
-    var counter = 0,
-        total = 100,
-        items = [];
-
-    while (counter < total) {
-        items.push({
-            id: counter++,
-            active: false
-        });
-    }
-
-    socket.on('mark', function(msg) {
-        console.log(msg);
-        var message = JSON.parse(msg),
-            model = _.findWhere(items, {id: message.id});
-
-        if (model) {
-            model.active = message.active;
-        }
-
-        console.log(message);
-        $scope.$apply();
-    });
-
-    $scope.items = items;
-
-    $scope.onClick = function(id) {
-        var model = _.findWhere(items, {id: id});
-        model.active = !model.active;
-        socket.emit('mark', JSON.stringify(model));
-    };
-}
-
 function MainCtrl($scope) {
     var items = [];
+
+    socket.on('items', function(msg) {
+        var message = JSON.parse(msg);
+
+        message.unshift(0, items.length);
+        items.splice.apply(items, message);
+
+        $scope.$apply();
+    });
 
     socket.on('item', function(msg) {
         var message = JSON.parse(msg),
@@ -97,4 +72,5 @@ function MainCtrl($scope) {
         return false;
     };
 }
+
 MainCtrl.$inject = ['$scope'];

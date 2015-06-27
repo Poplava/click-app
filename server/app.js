@@ -16,6 +16,7 @@ app.get('/', function (req, res) {
 app.use(express.static('client'));
 
 io.on('connection', function(socket) {
+    io.emit('items', JSON.stringify(items));
     console.log('a user connected');
     socket.on('item', function(msg) {
         var message = JSON.parse(msg),
