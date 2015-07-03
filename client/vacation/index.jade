@@ -1,0 +1,11 @@
+html
+  head(lang="en")
+    link(rel="stylesheet", href="app/css/style.css")
+    title Poplavsky vacation
+  body(ng-app="App")
+    h1 Poplavsky vacation
+    .container(ng-controller="MainCtrl")
+      .time Starts in {{timerH}} hours {{timerM}} minutes {{timerS}} seconds
+    script(src="app/lib/angular.min.js")
+    script(src="app/lib/moment.min.js")
+    script(src="app/app.js")
