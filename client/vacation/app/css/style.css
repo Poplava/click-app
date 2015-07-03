@@ -15,5 +15,15 @@ h1 {
 .time {
     margin: 100px 0 0;
     text-align: center;
+    font-size: 25px;
+}
+
+.name, .t {
+    font-weight: bold;
     font-size: 40px;
+    color: #000;
+}
+
+.muted {
+    color: #999;
 }

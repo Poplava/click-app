@@ -3,9 +3,33 @@ html
     link(rel="stylesheet", href="app/css/style.css")
     title Poplavsky vacation
   body(ng-app="App")
-    h1 Poplavsky vacation
-    .container(ng-controller="MainCtrl")
-      .time Starts in {{timerH}} hours {{timerM}} minutes {{timerS}} seconds
+    br
+    br
+    br
+    .container(ng-controller="MainCtrl", ng-init="init('2015-07-03 19:00')")
+      .time
+        span.name Poplavsky vacation
+        span.muted= ' starts in '
+          span.t {{timerH}}
+          = ' hours '
+          span.t {{timerM}}
+          = ' minutes '
+          span.t {{timerS}}
+          = ' seconds.'
+    br
+    br
+    br
+    .container(ng-controller="MainCtrl", ng-init="init('2015-07-03 12:30')")
+      .time
+        span.name Friday
+        span.muted= ' starts in '
+          span.t {{timerH}}
+          = ' hours '
+          span.t {{timerM}}
+          = ' minutes '
+          span.t {{timerS}}
+          = ' seconds.'
+
     script(src="app/lib/angular.min.js")
     script(src="app/lib/moment.min.js")
     script(src="app/app.js")
